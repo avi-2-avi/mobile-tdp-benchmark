@@ -1,0 +1,44 @@
+### Flutter
+
+flutter_proj/*.class
+flutter_proj/*.log
+flutter_proj/*.pyc
+flutter_proj/*.swp
+flutter_proj/.DS_Store
+flutter_proj/.atom/
+flutter_proj/.buildlog/
+flutter_proj/.history
+flutter_proj/.svn/
+flutter_proj/migrate_working_dir/
+
+# IntelliJ related
+flutter_proj/*.iml
+flutter_proj/*.ipr
+flutter_proj/*.iws
+flutter_proj/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#flutter_proj/.vscode/
+
+# Flutter/Dart/Pub related
+flutter_proj/**/doc/api/
+flutter_proj/**/ios/Flutter/.last_build_id
+flutter_proj/.dart_tool/
+flutter_proj/.flutter-plugins
+flutter_proj/.flutter-plugins-dependencies
+flutter_proj/.pub-cache/
+flutter_proj/.pub/
+flutter_proj//build/
+
+# Symbolication related
+flutter_proj/app.*.symbols
+
+# Obfuscation related
+flutter_proj/app.*.map.json
+
+# Android Studio will place build artifacts here
+flutter_proj//android/app/debug
+flutter_proj//android/app/profile
+flutter_proj//android/app/release
