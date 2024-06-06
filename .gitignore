@@ -1,0 +1,71 @@
+### Ionic
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/ionic-proj/node_modules
+/ionic-proj/.pnp
+/ionic-proj/.pnp.js
+
+# testing
+/ionic-proj/coverage
+
+# production
+/ionic-proj/dist
+
+# misc
+/ionic-proj/.DS_Store
+/ionic-proj/.env.local
+/ionic-proj/.env.development.local
+/ionic-proj/.env.test.local
+/ionic-proj/.env.production.local
+/ionic-proj/.nx
+/ionic-proj/.nx/cache
+/ionic-proj/.vscode/*
+!/ionic-proj/.vscode/extensions.json
+/ionic-proj/.idea
+
+/ionic-proj/npm-debug.log*
+/ionic-proj/yarn-debug.log*
+/ionic-proj/yarn-error.log*
+
+# Optional eslint cache
+/ionic-proj/.eslintcache
+
+### React Native
+
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+/react-native-proj/node_modules/
+
+# Expo
+/react-native-proj/.expo/
+/react-native-proj/dist/
+/react-native-proj/web-build/
+ 
+# Native
+/react-native-proj/*.orig.*
+/react-native-proj/*.jks
+/react-native-proj/*.p8
+/react-native-proj/*.p12
+/react-native-proj/*.key
+/react-native-proj/*.mobileprovision
+
+# Metro
+/react-native-proj/.metro-health-check*
+
+# debug
+/react-native-proj/npm-debug.*
+/react-native-proj/yarn-debug.*
+/react-native-proj/yarn-error.*
+
+# macOS
+/react-native-proj/.DS_Store
+/react-native-proj/*.pem
+
+# local env files
+/react-native-proj/.env*.local
+
+# typescript
+/react-native-proj/*.tsbuildinfo
