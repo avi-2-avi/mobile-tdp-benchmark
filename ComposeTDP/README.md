@@ -23,7 +23,7 @@ This project is an Android application designed for testing device performance u
 4. Run the application on your device from Android Studio.
 
 ## Screenshots
-![Screenshot](https://raw.githubusercontent.com/avi-2-avi/mobile-tdp-benchmark/feature/jetpack-compose/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## Contribution
 If you'd like to contribute to this project, you're welcome to do so through pull requests. Please make sure to discuss significant changes before submitting them.
