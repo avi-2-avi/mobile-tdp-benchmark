@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, TextInput, Text, StyleSheet, Dimensions } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { useSharedValue, withTiming, useAnimatedProps } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,12 +18,13 @@ const generateCircles = (count) => {
   return circles;
 };
 
-const MovingCircles = ({ circleCount }) => {
+const MovingCircles = ({ circleCount, onRender }) => {
   const [circles, setCircles] = useState(generateCircles(circleCount));
 
   useEffect(() => {
     setCircles(generateCircles(circleCount));
-  }, [circleCount]);
+    onRender && onRender(); // Call the onRender callback when the circles are set
+  }, [circleCount, onRender]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,10 +60,8 @@ const MovingCircles = ({ circleCount }) => {
   );
 };
 
-const FpsAndResourceMonitor = () => {
+const FpsAndResourceMonitor = ({ responseTime }) => {
   const [fps, setFps] = useState(0);
-  const [cpuUsage, setCpuUsage] = useState(0);
-  const [memoryUsage, setMemoryUsage] = useState(0);
 
   useEffect(() => {
     let frameCount = 0;
@@ -75,10 +73,6 @@ const FpsAndResourceMonitor = () => {
         setFps(frameCount);
         frameCount = 0;
         lastFrameTime = now;
-
-        // Update CPU and memory usage
-        setCpuUsage(Math.random()); // Placeholder for actual CPU usage
-        setMemoryUsage(Math.random() * 100); // Placeholder for actual memory usage
       }
       requestAnimationFrame(updateFps);
     };
@@ -89,10 +83,7 @@ const FpsAndResourceMonitor = () => {
     <View style={styles.monitor}>
       <Text style={styles.monitorText}>FPS: {fps}</Text>
       <Text style={styles.monitorText}>
-        CPU Usage: {(cpuUsage * 100).toFixed(2)}%
-      </Text>
-      <Text style={styles.monitorText}>
-        Memory Usage: {memoryUsage.toFixed(2)} MB
+        Initial Response Time: {responseTime !== null ? `${responseTime}ms` : 'N/A'}
       </Text>
     </View>
   );
@@ -101,26 +92,40 @@ const FpsAndResourceMonitor = () => {
 const App = () => {
   const [circleCount, setCircleCount] = useState(0);
   const [inputValue, setInputValue] = useState('');
+  const [responseTime, setResponseTime] = useState(null);
+  const startTimeRef = useRef(null);
+
+  const handleInputChange = (text) => {
+    setInputValue(text);
+    const count = parseInt(text, 10);
+    if (!isNaN(count)) {
+      startTimeRef.current = performance.now();
+      setCircleCount(count);
+    }
+  };
+
+  const handleRender = () => {
+    if (startTimeRef.current !== null) {
+      const endTime = performance.now();
+      const initialResponseTime = endTime - startTimeRef.current;
+      setResponseTime(initialResponseTime.toFixed(2));
+      startTimeRef.current = null; // Reset the start time
+    }
+  };
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         value={inputValue}
-        onChangeText={(text) => {
-          setInputValue(text);
-          const count = parseInt(text, 10);
-          if (!isNaN(count)) {
-            setCircleCount(count);
-          }
-        }}
+        onChangeText={handleInputChange}
         keyboardType="numeric"
         placeholder="Enter number of circles"
       />
       <View style={styles.canvas}>
-        <MovingCircles circleCount={circleCount} />
+        <MovingCircles circleCount={circleCount} onRender={handleRender} />
       </View>
-      <FpsAndResourceMonitor />
+      <FpsAndResourceMonitor responseTime={responseTime} />
     </View>
   );
 };
