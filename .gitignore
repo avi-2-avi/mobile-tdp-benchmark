@@ -69,3 +69,21 @@
 
 # typescript
 /react-native-proj/*.tsbuildinfo
+
+### Jetpack Compose
+
+/compose-proj/*.iml
+/compose-proj/.gradle
+/compose-proj/local.properties
+/compose-proj/.idea/caches
+/compose-proj/.idea/libraries
+/compose-proj/.idea/modules.xml
+/compose-proj/.idea/workspace.xml
+/compose-proj/.idea/navEditor.xml
+/compose-proj/.idea/assetWizardSettings.xml
+/compose-proj/.DS_Store
+/compose-proj//build
+/compose-proj/captures
+/compose-proj/.externalNativeBuild
+/compose-proj/.cxx
+/compose-proj/local.properties
